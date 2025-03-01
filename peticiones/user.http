@@ -1,0 +1,49 @@
+@host = http://localhost:3000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQiLCJzdWIiOiI0IiwiaWF0IjoxNzQwODQ2MzY3LCJleHAiOjE3NzIzODIzNjd9.nhNquWBszs50r8VJwD_VDm67lHxOrtZwDwo8iz_dKNA
+
+### Get Usuarios
+GET  {{host}}/usuario
+Authentication: {{token}}
+
+### Get User Id
+GET  {{host}}/usuario/4
+Authentication: {{token}}
+
+### Crear Usuario
+POST {{host}}/usuario/create
+Authentication: {{token}}
+Content-Type: "application/json"
+
+{
+    "nombre" : "Kristian",
+    "usuario" : "krisaa",
+    "password" : "1234",
+    "roles" : ["Admin"]
+}
+
+### Crear Usuario
+POST {{host}}/usuario/update/4
+Authentication: {{token}}
+Content-Type: "application/json"
+
+{
+    "nombre" : "Kristian Aguirre",
+    "usuario" : "kristofer",
+    "password" : "1234",
+    "contacto" : "1234",
+    "direccion" : "Calle 123",
+    "roles" : ["Admin","Super Admin"]
+}
+
+### Login
+POST {{host}}/usuario/login
+Content-Type: "application/json"
+
+{
+    "usuario" : "kris",
+    "password" : "1234"
+}
+
+
+### Get Base
+GET http://localhost:3000/
