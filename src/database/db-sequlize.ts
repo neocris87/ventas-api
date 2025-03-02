@@ -70,7 +70,17 @@ UserModel.init(
 )
 
 
-export class EmpresaModel extends Model { }
+export class EmpresaModel extends Model {
+    declare id: number
+    declare razonSocial: string
+    declare nit: string
+    declare direccion: string
+    declare contacto: string
+    declare email: string
+    declare estado: boolean
+    declare createdAt: Date
+    declare updatedAt: Date
+}
 
 EmpresaModel.init(
     {
@@ -100,7 +110,17 @@ EmpresaModel.init(
     }
 )
 
-export class ProductoModel extends Model { }
+export class ProductoModel extends Model {
+    declare id: number
+    declare codigo: string
+    declare nombre: string
+    declare descripcion: string
+    declare precio: number
+    declare stock: number
+    declare estado: boolean
+    declare createdAt: Date
+    declare updatedAt: Date
+}
 
 ProductoModel.init(
     {
@@ -133,9 +153,16 @@ ProductoModel.init(
     }
 )
 
-export class PedidoTable extends Model { }
+export class PedidoModel extends Model {
+    declare id: number
+    declare usuarioId: number
+    declare despachadorId: number
+    declare estado: string
+    declare createdAt: Date
+    declare updatedAt: Date
+}
 
-PedidoTable.init(
+PedidoModel.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -168,11 +195,11 @@ PedidoTable.init(
 EmpresaModel.hasMany(ProductoModel)
 ProductoModel.belongsTo(EmpresaModel)
 
-PedidoTable.belongsTo(UserModel, { foreignKey: 'usuarioId' })
-UserModel.hasOne(PedidoTable, { foreignKey: 'usuarioId' })
+PedidoModel.belongsTo(UserModel, { foreignKey: 'usuarioId'})
+UserModel.hasOne(PedidoModel, { foreignKey: 'usuarioId' })
 
-PedidoTable.belongsTo(UserModel, { foreignKey: 'despachadorId' })
-UserModel.hasOne(PedidoTable, { foreignKey: 'despachadorId' })
+PedidoModel.belongsTo(UserModel, { foreignKey: 'despachadorId'})
+UserModel.hasOne(PedidoModel, { foreignKey: 'despachadorId' })
 
 const initDb = async () => {
     try {

@@ -7,7 +7,7 @@ import { RolesEnum } from '@/types/roles'
 
 export const UserRouter = new Hono<Env>()
     .post("/login", Login)
-    .use(UserMiddleware)
+    // .use(UserMiddleware)
     .get(
         "/",
         GetAll
